@@ -90,70 +90,70 @@ class LinkedList() {
       head = null
       return
     }
-//    if (head.next.next == null) {
-//      head.next = null
-//    }
+    //    if (head.next.next == null) {
+    //      head.next = null
+    //    }
     else {
       new LinkedList(head.next).removeLastElement()
     }
 
+
+
+
+
+
+    //    var n = getLastElement()
+    //    n = null
+
+    //lastElement(head)
+
   }
 
+  def swapElements(e1: String, e2: String): Unit = {
+    findElement(e1).item = e2
+    findElement(e2).item = e1
 
 
+  }
 
-  //    var n = getLastElement()
-  //    n = null
+  def removeElement(e: String): Unit = {
+    var node = findElement(e)
+    var name = node.item
+    if (node != null) {
+      if (findElement(e).next != null) {
+        node.item = node.next.item
+        node.next = node.next.next
+      }
+      else {
+        removeLastElement()
+      }
 
-  lastElement(head)
 
-}
-
-def swapElements(e1: String, e2: String): Unit = {
-  findElement(e1).item = e2
-  findElement(e2).item = e1
-
-
-}
-
-def removeElement(e: String): Unit = {
-  var node = findElement(e)
-  var name = node.item
-  if (node != null) {
-    if (findElement(e).next != null) {
-      node.item = node.next.item
-      node.next = node.next.next
     }
-    else {
-      removeLastElement()
+  }
+
+
+  def insertAfter(before: String, after: String): Unit = {
+    var node = findElement(before)
+    if (node != null) {
+      var newNode = new Node(after, node.next)
+      node.next = newNode
+    }
+  }
+
+  override def toString: String = {
+
+    var result: String = s"List content (size ${getSize()}) : "
+
+    def nameNode(node: Node): String = {
+      if (node == null) return "null"
+      s"${node.item} -> ${nameNode(node.next)}"
+
     }
 
+    result + nameNode(head)
 
   }
-}
-
-
-def insertAfter(before: String, after: String): Unit = {
-  var node = findElement(before)
-  if (node != null) {
-    var newNode = new Node(after, node.next)
-    node.next = newNode
-  }
-}
-
-override def toString: String = {
-
-  var result: String = s"List content (size ${getSize()}) : "
-
-  def nameNode(node: Node): String = {
-    if (node == null) return "null"
-    s"${node.item} -> ${nameNode(node.next)}"
-
-  }
-
-  result + nameNode(head)
-
-}
 
 
 }
